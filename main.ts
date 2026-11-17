@@ -55,7 +55,9 @@ const STOP_BPS = 150; // hard stop below the average entry price
 const TARGET_BPS = 400; // profit target above the average entry price
 const TIME_STOP = 120; // bars from the first tranche, then exit
 const TRANCHE_SIZE = 1_000_000_000n / 3n; // $333.33 in micro-USDC
-const MAX_SLIPPAGE_BPS = 100;
+const MAX_SLIPPAGE_BPS = 50; // cap the fill slippage the bot accepts: the dev fill
+// model assumes 2 bps, so 50 bps still allows 25x the modeled slippage
+// while rejecting extreme fills in the live race if liquidity thins out
 
 /** State for one run: the closes seen and the open position, if any. */
 class WashoutBot {
